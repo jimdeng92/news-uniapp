@@ -1,0 +1,17 @@
+// 在本文件中可配置云数据库初始化，数据格式见：https://uniapp.dcloud.io/uniCloud/cf-database?id=db_init
+
+// 编写完毕后对本文件点右键，可按配置规则创建表和添加数据
+
+{
+	"list": { // 集合（表名）
+		"data": [ // 数据
+			{
+				"_id": "da51bd8c5e37ac14099ea43a2505a1a5",
+				"name": "tom"
+			},
+			{
+				"name": "linhe"
+			}
+		]
+	}
+}
