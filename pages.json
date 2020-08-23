@@ -3,6 +3,7 @@
 		{
 			"path": "pages/tabbar/index/index",
 			"style": {
+				"navigationStyle": "custom", // 去掉默认导航
 				"navigationBarTitleText": "uni-app"
 			}
 		}, {
@@ -10,6 +11,9 @@
 			"style": {}
 		}, {
 			"path": "pages/tabbar/my/my",
+			"style": {}
+		}, {
+			"path": "components/navbar/navbar",
 			"style": {}
 		}
 	],
