@@ -2,6 +2,7 @@
   "navigationStyle": "custom",
   "navigationBarTitleText": "uni-app",
   "usingComponents": {
-    "navbar": "/components/navbar/navbar"
+    "navbar": "/components/navbar/navbar",
+    "tab": "/components/tab/tab"
   }
 }

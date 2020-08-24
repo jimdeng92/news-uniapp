@@ -100,6 +100,9 @@ __webpack_require__.r(__webpack_exports__);
 var components = {
   navbar: function() {
     return __webpack_require__.e(/*! import() | components/navbar/navbar */ "components/navbar/navbar").then(__webpack_require__.bind(null, /*! @/components/navbar/navbar.vue */ 29))
+  },
+  tab: function() {
+    return __webpack_require__.e(/*! import() | components/tab/tab */ "components/tab/tab").then(__webpack_require__.bind(null, /*! @/components/tab/tab.vue */ 36))
   }
 }
 var render = function() {
@@ -145,19 +148,26 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
-//
-//
 var _default =
 {
   data: function data() {
     return {
-      title: 'Hello' };
+      title: 'Hello',
+      tabList: [] };
 
   },
   onLoad: function onLoad() {
-
+    this.getLabel();
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    tabItemClickHandle: function tabItemClickHandle(_ref) {
+      // console.log(item, index)
+      var item = _ref.item,index = _ref.index;},
+    getLabel: function getLabel() {var _this = this;
+      this.$api.get_label().then(function (res) {
+        _this.tabList = res.data;
+      });
+    } } };exports.default = _default;
 
 /***/ })
 ],[[11,"common/runtime","common/vendor"]]]);

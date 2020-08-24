@@ -31,7 +31,7 @@
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.10.4",
+	"libVersion": "",
 	"appid": "touristappid",
 	"projectname": "imooc-news",
 	"simulatorType": "wechat",

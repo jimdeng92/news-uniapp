@@ -1,16 +1,11 @@
-# imooc-news
 
-uni-app 项目，根据慕课网视频开发
+// import {get_label} from './list.js'
 
-### cloudfunction 云函数库
+// export default {
+// 	get_label
+// }
 
-- db_init.json 云数据库初始化
-
-### api 封装
-
-- 自动批量导出
-
-```js
+// 自动导出
 const requireApi = require.context(
 	// api目录的相对路径
 	'.',
@@ -29,4 +24,3 @@ requireApi.keys().forEach(item => {
 })
 
 export default module
-```

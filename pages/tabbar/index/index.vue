@@ -2,9 +2,7 @@
 	<view class="content">
 		<!-- easyCom -->
 		<navbar></navbar>
-		<view v-for="item in 100">
-			{{item}}-内容
-		</view>
+		<tab :list="tabList" @tab="tabItemClickHandle"></tab>
 	</view>
 </template>
 
@@ -12,14 +10,22 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				title: 'Hello',
+				tabList: []
 			}
 		},
 		onLoad() {
-
+			this.getLabel()
 		},
 		methods: {
-
+			tabItemClickHandle({item, index}) {
+				// console.log(item, index)
+			},
+			getLabel() {
+				this.$api.get_label().then(res => {
+					this.tabList = res.data
+				})
+			}
 		}
 	}
 </script>
