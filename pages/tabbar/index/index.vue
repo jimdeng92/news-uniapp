@@ -1,8 +1,14 @@
 <template>
-	<view class="content">
+	<view class="home">
 		<!-- easyCom -->
 		<navbar></navbar>
 		<tab :list="tabList" @tab="tabItemClickHandle"></tab>
+		
+		<list-scroll>
+			<list-card mode="base"></list-card>
+			<list-card mode="image"></list-card>
+			<list-card mode="column"></list-card>
+		</list-scroll>
 	</view>
 </template>
 
@@ -31,4 +37,14 @@
 </script>
 
 <style style="scss">
+	page {
+		height: 100%;
+		display: flex;
+	}
+	.home {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		overflow: hidden;
+	}
 </style>
