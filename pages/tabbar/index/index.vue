@@ -2,13 +2,11 @@
 	<view class="home">
 		<!-- easyCom -->
 		<navbar></navbar>
-		<tab :list="tabList" @tab="tabItemClickHandle"></tab>
+		<tab :list="tabList" @tab="tabItemClickHandle" :tabIndex="tabIndex"></tab>
+		<view class="home-list">
+			<list :tab="tabList" @change="change" :tabIndex="tabIndex"></list>
+		</view>
 		
-		<list-scroll>
-			<list-card mode="base"></list-card>
-			<list-card mode="image"></list-card>
-			<list-card mode="column"></list-card>
-		</list-scroll>
 	</view>
 </template>
 
@@ -17,15 +15,19 @@
 		data() {
 			return {
 				title: 'Hello',
-				tabList: []
+				tabList: [],
+				tabIndex: 0
 			}
 		},
 		onLoad() {
 			this.getLabel()
 		},
 		methods: {
+			change(current) {
+				this.tabIndex = current
+			},
 			tabItemClickHandle({item, index}) {
-				// console.log(item, index)
+				this.tabIndex = index
 			},
 			getLabel() {
 				this.$api.get_label().then(res => {
@@ -36,7 +38,7 @@
 	}
 </script>
 
-<style style="scss">
+<style lang="scss">
 	page {
 		height: 100%;
 		display: flex;
@@ -46,5 +48,9 @@
 		flex-direction: column;
 		flex: 1;
 		overflow: hidden;
+		.home-list {
+			flex: 1;
+			box-sizing: border-box;
+		}
 	}
 </style>

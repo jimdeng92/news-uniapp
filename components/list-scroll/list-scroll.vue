@@ -21,6 +21,7 @@
 <style lang="scss">
 .scroll {
 	flex: 1;
+	height: 100%;
 	overflow: hidden;
 	box-sizing: border-box;
 	.list-scroll{
