@@ -1,3 +1,5 @@
+<!-- navbar -->
+
 <template>
 	<view class="navbar">
 		<view class="navbar-fixed">

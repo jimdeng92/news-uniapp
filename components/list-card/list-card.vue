@@ -8,6 +8,7 @@
 			<view class="listcard-content">
 				<view class="listcard-content__title">
 					<text>{{item.title}}</text>
+					<likes></likes>
 				</view>
 				<view class="listcard-content__des">
 					<view class="listcard-content__des-label">
@@ -23,6 +24,7 @@
 			<view class="listcard-content">
 				<view class="listcard-content__title">
 					<text>{{item.title}}</text>
+					<likes></likes>
 				</view>
 				<view class="listcard-image">
 					<view class="listcard-image__item" v-for="item in itemCover" :key="item">
@@ -46,6 +48,7 @@
 			<view class="listcard-content">
 				<view class="listcard-content__title">
 					<text>{{item.title}}</text>
+					<likes></likes>
 				</view>
 				<view class="listcard-content__des">
 					<view class="listcard-content__des-label">
@@ -112,6 +115,8 @@
 		padding-left: 10px;
 		width: 100%;
 		.listcard-content__title {
+			position: relative;
+			padding-right: 50px;
 			font-size: 14px;
 			color: #333;
 			line-height: 1.2;

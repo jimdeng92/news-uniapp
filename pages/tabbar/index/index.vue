@@ -1,3 +1,5 @@
+<!-- 首页 -->
+
 <template>
 	<view class="home">
 		<!-- easyCom -->
@@ -31,7 +33,11 @@
 			},
 			getLabel() {
 				this.$api.get_label().then(res => {
-					this.tabList = res.data
+					 const {data} = res
+					 data.unshift({
+						 name: '全部'
+					 })
+					 this.tabList = data
 				})
 			}
 		}
