@@ -17,7 +17,13 @@
 		// 	"path": "components/navbar/navbar",
 		// 	"style": {}
 		// }
-	],
+	    ,{
+            "path" : "pages/home-search/home-search",
+            "style" : {
+							"navigationStyle": "custom" // 去掉默认导航
+						}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
