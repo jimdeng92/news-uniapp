@@ -28,10 +28,17 @@
 
 <script>
 	export default {
+		model: {
+			prop: 'modelVal'
+		},
 		props: {
 			isSearch: {
 				type: Boolean,
 				default: false
+			},
+			modelVal: {
+				type: String,
+				default: ''
 			}
 		},
 		data() {
@@ -41,6 +48,11 @@
 				windowWidth: 0, // 视口宽度
 				val: ''
 			};
+		},
+		watch: {
+			modelVal(newVal) {
+				this.val = newVal
+			}
 		},
 		created() {
 			// 获取手机系统信息
@@ -110,6 +122,7 @@
 					margin-right: 10px;
 				}
 				.navbar-search_text {
+					width: 100%;
 					font-size: 14px;
 					color: #999;
 				}
