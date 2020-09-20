@@ -12,7 +12,7 @@
 				</view>
 			</view>
 		</scroll-view>
-		<view class="tab-icons">
+		<view class="tab-icons" @click="open">
 			<uni-icons type="gear" size="26" color="#666"></uni-icons>
 		</view>
 	</view>
@@ -43,6 +43,11 @@
 			};
 		},
 		methods: {
+			open() {
+				uni.navigateTo({
+					url: '/pages/home-label/home-label'
+				})
+			},
 			tabClickHandle({item, index}) {
 				// 不使用对象传参，第一个参数 undefined ???
 				this.activeIndex = index

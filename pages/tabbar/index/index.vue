@@ -23,6 +23,13 @@
 		},
 		onLoad() {
 			this.getLabel()
+			uni.$on('labelChange', () => {
+				// 清空
+				this.tabList = []
+				this.tabIndex = 0
+				
+				this.getLabel()
+			})
 		},
 		methods: {
 			change(current) {

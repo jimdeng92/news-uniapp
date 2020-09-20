@@ -57,7 +57,7 @@
 		methods: {
 			// 清空
 			clearHandle() {
-				
+				this.$store.commit('CLEAR_HISTORY')
 			},
 			// 点击历史记录搜索
 			getHistory(item) {

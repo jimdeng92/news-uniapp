@@ -37,6 +37,8 @@
 		},
 		watch: {
 			tab(val) {
+				this.listCatchData = {}
+				this.load = {}
 				if(!val.length) return
 				this.getList(this.tabIndex)
 			}

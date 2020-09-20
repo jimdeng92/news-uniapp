@@ -23,6 +23,13 @@
 							"navigationStyle": "custom" // 去掉默认导航
 						}
         }
+        ,{
+            "path" : "pages/home-label/home-label",
+            "style" : {
+							"navigationBarTitleText": "标签管理",
+							"navigationBarTextStyle":"black"
+						}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

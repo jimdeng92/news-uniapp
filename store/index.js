@@ -5,11 +5,16 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
 	state: {
-		historyList: []
+		historyList: uni.getStorageSync('history') || []
 	},
 	mutations: {
 		SET_HISTORY_LIST(state, historyList) {
+			uni.setStorageSync('history', historyList)
 			state.historyList = historyList
+		},
+		CLEAR_HISTORY(state) {
+			uni.clearStorageSync('history')
+			state.historyList = []
 		}
 	},
 	actions: {

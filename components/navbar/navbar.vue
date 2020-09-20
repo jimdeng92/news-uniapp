@@ -6,7 +6,7 @@
 			<!-- 状态栏 -->
 			<view :style="{height: statusBarHeight + 'px'}"></view>
 			<view class="navbar-content" :class="{search: isSearch}" @click.stop="open" :style="{height: navBarHeight + 'px', width: windowWidth + 'px'}">
-				<view class="navbar-content__search-icons">
+				<view @click="backHandle" class="navbar-content__search-icons">
 					<uni-icons type="back" size="22" color="#fff"></uni-icons>
 				</view>
 				<view v-if="!isSearch" class="navbar-search">
@@ -70,6 +70,11 @@
 			// #endif
 		},
 		methods: {
+			backHandle() {
+				uni.switchTab({
+					url: '/pages/tabbar/index/index'
+				})
+			},
 			open() {
 				if (this.isSearch) return
 				uni.navigateTo({

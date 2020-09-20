@@ -27,3 +27,10 @@ export const get_search = function(data) {
 		data
 	})
 }
+
+export const update_label = function(data) {
+	return $http({
+		url: 'update_label',
+		data
+	})
+}
