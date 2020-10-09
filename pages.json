@@ -30,6 +30,10 @@
 							"navigationBarTextStyle":"black"
 						}
         }
+        ,{
+            "path" : "pages/home-detail/home-detail",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",

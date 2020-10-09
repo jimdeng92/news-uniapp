@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view @click="open">
 		<!-- 基础卡片 -->
 		<view class="listcard" v-if="item.mode === 'base'">
 			<view class="listcard-image">
@@ -85,6 +85,13 @@
 			return {
 				
 			};
+		},
+		methods: {
+			open() {
+				uni.navigateTo({
+					url: '/pages/home-detail/home-detail'
+				})
+			}
 		}
 	}
 </script>
