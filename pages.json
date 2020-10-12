@@ -12,29 +12,22 @@
 		}, {
 			"path": "pages/tabbar/my/my",
 			"style": {}
+		},{
+			"path" : "pages/home-search/home-search",
+			"style" : {
+				"navigationStyle": "custom" // 去掉默认导航
+			}
+		},{
+			"path" : "pages/home-label/home-label",
+			"style" : {
+				"navigationBarTitleText": "标签管理",
+				"navigationBarTextStyle":"black"
+			}
+		},{
+			"path" : "pages/home-detail/home-detail",
+			"style" : {}
 		}
-		// {
-		// 	"path": "components/navbar/navbar",
-		// 	"style": {}
-		// }
-	    ,{
-            "path" : "pages/home-search/home-search",
-            "style" : {
-							"navigationStyle": "custom" // 去掉默认导航
-						}
-        }
-        ,{
-            "path" : "pages/home-label/home-label",
-            "style" : {
-							"navigationBarTitleText": "标签管理",
-							"navigationBarTextStyle":"black"
-						}
-        }
-        ,{
-            "path" : "pages/home-detail/home-detail",
-            "style" : {}
-        }
-    ],
+  ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",

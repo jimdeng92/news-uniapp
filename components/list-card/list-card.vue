@@ -88,8 +88,16 @@
 		},
 		methods: {
 			open() {
+				const params = {
+					_id: this.item._id,
+					title: this.item.title,
+					create_time: this.item.create_time,
+					thumbs_up_count: this.item.thumbs_up_count,
+					browse_count: this.item.browse_count,
+					author: this.item.author,
+				}
 				uni.navigateTo({
-					url: '/pages/home-detail/home-detail'
+					url: '/pages/home-detail/home-detail?params=' + JSON.stringify(params)
 				})
 			}
 		}
