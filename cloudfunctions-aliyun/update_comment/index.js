@@ -9,11 +9,17 @@ exports.main = async (event, context) => {
 	const {
 		user_id,
 		article_id,
-		content
+		content,
+		comment_id = ''
 	} = event
 	
 	let user = await db.collection('user').doc(user_id).get()
 	user = user.data[0]
+	// 获取当前的文章信息
+	const article = await db.collection('article').doc(article_id).get()
+	// 获取文章下的所有评论
+	const comments = article.data[0].comments
+	
 	
 	let commentObj = {
 		comment_id: genID(5),
@@ -22,14 +28,34 @@ exports.main = async (event, context) => {
 		author: {
 			author_id: user._id,
 			author_name: user.author_name,
-			avator: user.avator,
+			avatar: user.avatar,
 			professional: user.professional
 		},
 		replys: []
 	}
 	
+	// 评论文章
+	if (comment_id === '') {
+		commentObj.reply = []
+		commentObj = dbCmd.unshift(commentObj)
+	} else {
+		// 回复其他评论
+		// 获取评论索引
+		let commentIndex = comments.findIndex(item => item.comment_id === comment_id)
+		// 获取作者信息
+		let commentAuthor = comments.find(item => item.comment_id === comment_id)
+		commentAuthor = commentAuthor.author.author_name
+		commentObj.to = commentAuthor
+		// 更新回复信息
+		commentObj = {
+			[commentIndex]: {
+				replys: dbCmd.unshift(commentObj)
+			}
+		}
+	}
+	
 	await db.collection('article').doc(article_id).update({
-		comments: dbCmd.unshift(commentObj)
+		comments: commentObj
 	})
 	
 	//返回数据给客户端

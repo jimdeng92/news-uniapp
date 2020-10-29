@@ -22,8 +22,8 @@
 			</view>
 			<view class="detail-comment">
 				<view class="comment-title">最新评论</view>
-				<view class="comment-content">
-					<comments-box></comments-box>
+				<view class="comment-content" v-for="item in commentsList" :key="item.comment_id">
+					<comments-box :comments="item" @reply="reply"></comments-box>
 				</view>
 			</view>
 		</view>
@@ -69,12 +69,15 @@
 		data() {
 			return {
 				formData: {},
-				commentValue: ''
+				commentValue: '',
+				commentsList: [],
+				replyFormData: {}
 			}
 		},
 		onLoad(query) {
 			this.formData = JSON.parse(query.params)
 			this.getDetail()
+			this.getComments()
 		},
 		methods: {
 			handleClosePopup() {
@@ -88,21 +91,30 @@
 					});
 					return
 				}
-				this.setUpdateComment(this.commentValue)
+				this.setUpdateComment({content: this.commentValue, ...this.replyFormData})
 			},
 			handleOpenPopup() {
 				this.$refs.popup.open()
 			},
+			reply(e) {
+				this.replyFormData = {
+					comment_id: e.comment_id
+				}
+				this.handleOpenPopup()
+			},
 			setUpdateComment(content) {
-				uni.showLoading()
-				this.$api.update_comment({
+				const formData = {
 					article_id: this.formData._id,
-					content
-				}).then(res => {
+					...content
+				}
+				uni.showLoading()
+				this.$api.update_comment(formData).then(res => {
 					uni.hideLoading()
 					uni.showToast({
 						title: '评论发布成功'
 					})
+					// 重新获取评论内容
+					this.getComments()
 					this.handleClosePopup()
 				})
 			},
@@ -112,6 +124,15 @@
 				}).then(res => {
 					const {data} = res
 					this.formData = data
+				})
+			},
+			// 请求评论内容
+			getComments() {
+				this.$api.get_comments({
+					article_id: this.formData._id
+				}).then(res => {
+					const {data} = res
+					this.commentsList = data
 				})
 			}
 		}
