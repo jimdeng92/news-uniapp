@@ -10,7 +10,9 @@ exports.main = async (event, context) => {
 		user_id,
 		article_id,
 		content,
-		comment_id = ''
+		comment_id = '',
+		reply_id = '',
+		is_reply = false
 	} = event
 	
 	let user = await db.collection('user').doc(user_id).get()
@@ -25,6 +27,7 @@ exports.main = async (event, context) => {
 		comment_id: genID(5),
 		comment_content: content,
 		create_time: new Date().getTime(),
+		is_reply: is_reply,
 		author: {
 			author_id: user._id,
 			author_name: user.author_name,
@@ -43,9 +46,18 @@ exports.main = async (event, context) => {
 		// 获取评论索引
 		let commentIndex = comments.findIndex(item => item.comment_id === comment_id)
 		// 获取作者信息
-		let commentAuthor = comments.find(item => item.comment_id === comment_id)
+		let commentAuthor
+		if(is_reply) {
+			// 子回复
+			commentAuthor = comments[commentIndex].replys.find(item => item.comment_id === reply_id)
+		} else {
+			// 主回复
+			commentAuthor = comments.find(item => item.comment_id === comment_id)
+		}
+		console.log(commentAuthor)
 		commentAuthor = commentAuthor.author.author_name
 		commentObj.to = commentAuthor
+		
 		// 更新回复信息
 		commentObj = {
 			[commentIndex]: {

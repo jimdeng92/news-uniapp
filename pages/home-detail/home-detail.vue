@@ -97,8 +97,13 @@
 				this.$refs.popup.open()
 			},
 			reply(e) {
+				console.log(e)
 				this.replyFormData = {
-					comment_id: e.comment_id
+					comment_id: e.comments.comment_id,
+					is_reply: e.is_reply
+				}
+				if (e.comments.reply_id) {
+					this.replyFormData.reply_id = e.comments.reply_id
 				}
 				this.handleOpenPopup()
 			},
@@ -116,6 +121,8 @@
 					// 重新获取评论内容
 					this.getComments()
 					this.handleClosePopup()
+					this.replyFormData = {}
+					this.commentValue = ''
 				})
 			},
 			getDetail() {

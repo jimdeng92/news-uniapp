@@ -3,5 +3,7 @@
 {	"user_id": "5f5653b3290dfb0001f2a0fd",
 	"article_id": "5f4d05bc8dbf300001005193",
 	"comment_id": "7jf3a9dfgdo0",
+	"reply_id": "7jf3a9dfgdo0",
+	"is_reply": true,
 	"conent": "回复评论"
 }

@@ -5,17 +5,22 @@
 				<image :src="comments.author.avatar" mode="aspectFill"></image>
 			</view>
 			<view class="comments-header__info">
-				<view class="title">{{comments.author.author_name}}</view>
+				<view class="title" v-if="!comments.is_reply">{{comments.author.author_name}}</view>
+				<view class="title" v-else>
+					{{comments.author.author_name}}
+					<text class="reply-text">回复</text>
+					{{comments.to}}
+				</view>
 				<view>{{comments.create_time}}</view>
 			</view>
 		</view>
 		<view class="comments-content">
 			<view>{{comments.comment_content}}</view>
 			<view class="comments-info">
-				<view class="comments-button" @click="commentsReply(comments)">回复</view>
+				<view class="comments-button" @click="commentsReply({comments, is_reply: reply})">回复</view>
 			</view>
 			<view class="comments-reply" v-for="item in comments.replys" :key="item.comment_id">
-				<comments-box :comments="item"></comments-box>
+				<comments-box :comments="item" reply @reply="commentsReply"></comments-box>
 			</view>
 		</view>
 	</view>
@@ -32,6 +37,10 @@
 				default() {
 					return {}
 				}
+			},
+			reply: {
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {
@@ -41,6 +50,11 @@
 		},
 		methods: {
 			commentsReply(comment) {
+				// 区分主回复和自回复
+				if (comment.is_reply) {
+					comment.comments.reply_id = comment.comments.comment_id
+					comment.comments.comment_id = this.comments.comment_id
+				}
 				this.$emit('reply', comment)
 			}
 		}
@@ -74,6 +88,11 @@
 					margin-bottom: 10px;
 					font-size: 10px;
 					color: #333;
+					.reply-text {
+						margin: 0 10px;
+						font-weight: bold;
+						color: #000;
+					}
 				}
 			}
 		}
