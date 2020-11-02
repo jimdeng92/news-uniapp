@@ -55,3 +55,10 @@ export const get_comments = function(data) {
 		data
 	})
 }
+
+export const update_author = function(data) {
+	return $http({
+		url: 'update_author',
+		data
+	})
+}

@@ -15,6 +15,9 @@
 					<text>{{formData.thumbs_up_count}} 赞</text>
 				</view>
 			</view>
+			<button class="detail-header__button" type="default" @click="follow">
+				{{formData.is_author_like ? '取消关注' : '关注'}}
+			</button>
 		</view>
 		<view class="detail-content">
 			<view class="detail-html">
@@ -80,6 +83,15 @@
 			this.getComments()
 		},
 		methods: {
+			follow() {
+				uni.showLoading()
+				this.$api.update_author({
+					author_id: this.formData._id
+				}).then(res => {
+					uni.hideLoading()
+					this.formData.is_author_like = !this.formData.is_author_like
+				})
+			},
 			handleClosePopup() {
 				this.$refs.popup.close()
 			},
@@ -189,6 +201,13 @@
 					margin-right: 10px;
 				}
 			}
+		}
+		.detail-header__button {
+			flex-shrink: 0;
+			height: 30px;
+			font-size: 12px;
+			color: #fff;
+			background-color: $mk-base-color;
 		}
 	}
 	.detail-content {
