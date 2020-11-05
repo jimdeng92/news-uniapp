@@ -62,3 +62,10 @@ export const update_author = function(data) {
 		data
 	})
 }
+
+export const update_thumbsup = function(data) {
+	return $http({
+		url: 'update_thumbsup',
+		data
+	})
+}

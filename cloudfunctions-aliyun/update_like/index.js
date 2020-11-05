@@ -9,9 +9,9 @@ exports.main = async (event, context) => {
 	} = event
 	
 	const userinfo = await db.collection('user').doc(user_id).get()
-	const article_id_ids = userinfo.data[0].article_likes_ids
+	const article_likes_ids = userinfo.data[0].article_likes_ids
 	let dbCmdFuns = null
-	if (article_id_ids.includes(article_id)) {
+	if (article_likes_ids.includes(article_id)) {
 		dbCmdFuns = dbCmd.pull(article_id)
 	} else {
 		dbCmdFuns = dbCmd.addToSet(article_id)

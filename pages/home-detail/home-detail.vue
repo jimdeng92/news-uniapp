@@ -39,11 +39,11 @@
 				<view class="detail-bottom__icons-box">
 					<uni-icons type="chat" size="22" color="#f07373"></uni-icons>
 				</view>
-				<view class="detail-bottom__icons-box">
-					<uni-icons type="heart" size="22" color="#f07373"></uni-icons>
+				<view class="detail-bottom__icons-box" @click="likeTap">
+					<uni-icons :type="formData.is_like ? 'heart-filled' : 'heart'" size="22" color="#f07373"></uni-icons>
 				</view>
-				<view class="detail-bottom__icons-box">
-					<uni-icons type="hand-thumbsup" size="22" color="#f07373"></uni-icons>
+				<view class="detail-bottom__icons-box" @click="handTap">
+					<uni-icons :type="formData.is_thumbs_up ? 'hand-thumbsup-filled' : 'hand-thumbsup'" size="22" color="#f07373"></uni-icons>
 				</view>
 			</view>
 		</view>
@@ -83,6 +83,32 @@
 			this.getComments()
 		},
 		methods: {
+			handTap() {
+				uni.showLoading()
+				this.$api.update_thumbsup({
+					article_id: this.formData._id
+				}).then(res => {
+					uni.hideLoading()
+					this.formData.is_thumbs_up = true
+					uni.showToast({
+						title: res.msg,
+						icon: 'none'
+					})
+				})
+			},
+			likeTap() {
+				uni.showLoading()
+				this.$api.update_like({
+					article_id: this.formData._id
+				}).then(res => {
+					uni.hideLoading()
+					this.formData.is_like = !this.formData.is_like
+					uni.showToast({
+						title: this.formData.is_like ? '收藏成功' : '取消收藏成功',
+						icon: 'none'
+					})
+				})
+			},
 			follow() {
 				uni.showLoading()
 				this.$api.update_author({
