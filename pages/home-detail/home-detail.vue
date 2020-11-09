@@ -36,7 +36,7 @@
 				<uni-icons type="compose" size="16" color="#f07373"></uni-icons>
 			</view>
 			<view class="detail-bottom__icons">
-				<view class="detail-bottom__icons-box">
+				<view class="detail-bottom__icons-box" @click="handleOpenComments">
 					<uni-icons type="chat" size="22" color="#f07373"></uni-icons>
 				</view>
 				<view class="detail-bottom__icons-box" @click="likeTap">
@@ -83,6 +83,11 @@
 			this.getComments()
 		},
 		methods: {
+			handleOpenComments() {
+				uni.navigateTo({
+					url: '../detail-comments/detail-comments?id=' + this.formData._id
+				})
+			},
 			handTap() {
 				uni.showLoading()
 				this.$api.update_thumbsup({
