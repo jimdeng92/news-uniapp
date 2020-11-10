@@ -69,3 +69,10 @@ export const update_thumbsup = function(data) {
 		data
 	})
 }
+
+export const get_follow = function(data) {
+	return $http({
+		url: 'get_follow',
+		data
+	})
+}
