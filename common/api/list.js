@@ -76,3 +76,10 @@ export const get_follow = function(data) {
 		data
 	})
 }
+
+export const get_author = function(data) {
+	return $http({
+		url: 'get_author',
+		data
+	})
+}

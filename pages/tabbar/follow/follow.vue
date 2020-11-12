@@ -7,13 +7,19 @@
 			</view>
 		</view>
 		<view class="follow-list">
-			<swiper class="follow-list__swiper">
+			<swiper class="follow-list__swiper" :current="activeIndex" @change="handleChange">
 				<swiper-item class="swiper-item">
 					<list-scroll>
-						<list-card v-for="item in list" :key="item._id" :item="item"></list-card>
+						<uni-load-more status="loading" v-if="list.length === 0 && !articleShow"></uni-load-more>
+						<list-card v-for="item in list" :key="item._id" types="follow" :item="item"></list-card>
+						<view class="no-data" v-if="articleShow">没有数据</view>
 					</list-scroll>
 				</swiper-item>
-				<swiper-item class="swiper-item"></swiper-item>
+				<swiper-item class="swiper-item">
+					<list-scroll>
+						<list-author v-for="item in authorLists" :key="item.id" :item="item"></list-author>
+					</list-scroll>
+				</swiper-item>
 			</swiper>
 		</view>
 	</view>
@@ -24,13 +30,25 @@
 		data() {
 			return {
 				activeIndex: 0,
-				list: []
+				list: [],
+				articleShow: false,
+				authorLists: []
 			}
 		},
 		onLoad() {
+			this.getAuthor()
 			this.getFollow()
+			uni.$on('update_article', () => {
+				this.getFollow()
+			})
+			uni.$on('update_author', () => {
+				this.getAuthor()
+			})
 		},
 		methods: {
+			handleChange(e) {
+				this.activeIndex = e.detail.current
+			},
 			handleTabClick(index) {
 				this.activeIndex = index
 			},
@@ -38,6 +56,14 @@
 				this.$api.get_follow().then(res => {
 					console.log(res)
 					this.list = res.data
+					this.articleShow = this.list.length === 0
+				})
+			},
+			// 有 bug
+			getAuthor() {
+				this.$api.get_author().then(res => {
+					console.log(res)
+					this.authorLists = res.data
 				})
 			}
 		}
@@ -89,6 +115,12 @@ page {
 				}
 			}
 		}
+	}
+	.no-data {
+		padding: 50px;
+		font-size: 14px;
+		color: #999;
+		text-align: center;
 	}
 }
 </style>
