@@ -1,8 +1,10 @@
+import store from '@/store'
+
 export default (options) => {
 	const {url, data} = options
 	
 	const dataObj = {
-		user_id: '5f5653b3290dfb0001f2a0fd',
+		user_id: store.state.userinfo._id,
 		...data
 	}
 	return new Promise((resolve, reject) => {

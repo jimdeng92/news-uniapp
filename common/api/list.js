@@ -83,3 +83,10 @@ export const get_author = function(data) {
 		data
 	})
 }
+
+export const get_user = function(data) {
+	return $http({
+		url: 'get_user',
+		data
+	})
+}
