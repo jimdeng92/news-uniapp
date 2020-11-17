@@ -90,3 +90,10 @@ export const get_user = function(data) {
 		data
 	})
 }
+
+export const get_my_article = function(data) {
+	return $http({
+		url: 'get_my_article',
+		data
+	})
+}

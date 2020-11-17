@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
 	state: {
-		userinfo: uni.getStorageSync('userinfo') || {},
+		userinfo: uni.getStorageSync('USER_INFO') || {},
 		historyList: uni.getStorageSync('history') || []
 	},
 	mutations: {

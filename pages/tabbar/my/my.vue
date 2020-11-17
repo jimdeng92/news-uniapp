@@ -26,14 +26,14 @@
 			</view>
 		</view>
 		<view class="my-content">
-			<view class="my-content__list">
+			<view class="my-content__list" @click="handleOpenMyArticle">
 				<view class="my-content__list-title">
 					<uni-icons class="icons" type="contact" size="14" color="#666"></uni-icons>
 					<text>我的文章</text>
 				</view>
 				<uni-icons type="arrowright" size="14" color="#666"></uni-icons>
 			</view>
-			<view class="my-content__list">
+			<view class="my-content__list" @click="handleOpenFeedback">
 				<view class="my-content__list-title">
 					<uni-icons class="icons" type="help" size="14" color="#666"></uni-icons>
 					<text>意见反馈</text>
@@ -57,7 +57,16 @@
 			...mapState(['userinfo'])
 		},
 		methods: {
-			
+			handleOpenMyArticle() {
+				uni.navigateTo({
+					url: '../../my-article/my-article'
+				})
+			},
+			handleOpenFeedback() {
+				uni.navigateTo({
+					url: '../../feedback/feedback'
+				})
+			}
 		}
 	}
 </script>

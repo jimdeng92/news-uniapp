@@ -8,14 +8,19 @@
 			}
 		}, {
 			"path": "pages/tabbar/follow/follow",
-			"style": {}
+			"style": {
+				"navigationBarTitleText": "关注"
+			}
 		}, {
 			"path": "pages/tabbar/my/my",
-			"style": {}
+			"style": {
+				"navigationBarTitleText": "个人中心"
+			}
 		},{
 			"path" : "pages/home-search/home-search",
 			"style" : {
-				"navigationStyle": "custom" // 去掉默认导航
+				"navigationStyle": "custom", // 去掉默认导航
+				"navigationBarTitleText": "搜索"
 			}
 		},{
 			"path" : "pages/home-label/home-label",
@@ -25,10 +30,30 @@
 			}
 		},{
 			"path" : "pages/home-detail/home-detail",
-			"style" : {}
+			"style" : {
+				"navigationBarTitleText": "详情"
+			}
 		}
       ,{
             "path" : "pages/detail-comments/detail-comments",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "评论详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/my-article/my-article",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的文章",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/feedback/feedback",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",

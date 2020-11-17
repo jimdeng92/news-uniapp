@@ -2,7 +2,6 @@ import store from '@/store'
 
 export default (options) => {
 	const {url, data} = options
-	
 	const dataObj = {
 		user_id: store.state.userinfo._id,
 		...data
