@@ -2,7 +2,7 @@
 	<view>
 		<view class="feedback-title">意见反馈：</view>
 		<view class="feedback-content">
-			<textarea class="feedback-textarea" placeholder="请输入您要反馈的内容" v-model="feedback"></textarea>
+			<textarea class="feedback-textarea" placeholder="请输入您要反馈的内容" v-model="content"></textarea>
 		</view>
 		<view class="feedback-title">反馈图片：</view>
 		<view class="feedback-image-box">
@@ -19,7 +19,7 @@
 					<uni-icons type="plusempty" size="50" color="#eee"></uni-icons>
 				</view>
 			</view>
-			<button class="feedback-button" type="primary">提交反馈</button>
+			<button class="feedback-button" type="primary" @click="handleSubmit">提交反馈意见</button>
 		</view>
 	</view>
 </template>
@@ -28,7 +28,7 @@
 	export default {
 		data() {
 			return {
-				feedback: '',
+				content: '',
 				imageList: []
 			}
 		},
@@ -51,6 +51,42 @@
 						})
 					}
 				})
+			},
+			async handleSubmit() {
+				let imagesPath = []
+				uni.showLoading()
+				for(let i = 0; i < this.imageList.length; i++) {
+					const filepath = this.imageList[i].url
+					const path = await this.uploadFile(filepath)
+					imagesPath.push(path)
+				}
+				this.$api.update_feedback({
+					feedbackImages: imagesPath,
+					content: this.content
+				}).then(res => {
+					uni.hideLoading()
+					uni.showToast({
+						title: '提交成功'
+					})
+					setTimeout(() => {
+						uni.switchTab({
+							url: '../tabbar/my/my'
+						})
+					}, 1500)
+				}).catch(err => {
+					uni.hideLoading()
+					uni.showToast({
+						title: '提交失败'
+					})
+				})
+			},
+			async uploadFile(filepath) {
+				console.log(filepath)
+				const result = await uniCloud.uploadFile({
+					filePath: filepath,
+					cloudPath: 'linhe.jpg'
+				})
+				return result.fileID
 			}
 		}
 	}
