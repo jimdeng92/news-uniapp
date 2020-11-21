@@ -1,5 +1,5 @@
 {
-    "name" : "imooc-news",
+    "name" : "慕课jimDeng",
     "appid" : "__UNI__8C0E513",
     "description" : "",
     "versionName" : "1.0.0",
@@ -57,9 +57,12 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "",
+        "appid" : "wx8071daa66ac67b31",
         "setting" : {
-            "urlCheck" : false
+            "urlCheck" : true,
+            "es6" : true,
+            "postcss" : true,
+            "minified" : true
         },
         "usingComponents" : true
     },

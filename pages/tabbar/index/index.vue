@@ -13,6 +13,8 @@
 </template>
 
 <script>
+	import {mapState} from 'vuex'
+	
 	export default {
 		data() {
 			return {
@@ -21,8 +23,15 @@
 				tabIndex: 0
 			}
 		},
+		computed: {
+			...mapState(['userinfo'])
+		},
+		watch: {
+			userinfo() {
+				this.getLabel()
+			}
+		},
 		onLoad() {
-			this.getLabel()
 			uni.$on('labelChange', () => {
 				// 清空
 				this.tabList = []

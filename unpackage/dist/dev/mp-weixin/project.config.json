@@ -4,12 +4,15 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": false
+    "urlCheck": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true
   },
   "compileType": "miniprogram",
   "libVersion": "",
-  "appid": "touristappid",
-  "projectname": "imooc-news",
+  "appid": "wx8071daa66ac67b31",
+  "projectname": "慕课jimDeng",
   "condition": {
     "search": {
       "current": -1,
